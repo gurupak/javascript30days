@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Quran Recitation - Qaru Abdul Sudais!</title>
+  </head>
+  <body>
+    <div class="keys">
+      <div data-key="65" class="key">
+        <kbd>A</kbd>
+        <span class="sound">Surat An-Nas&nbsp;</span>
+      </div>
+      <div data-key="83" class="key">
+        <kbd>S</kbd>
+        <span class="sound">Surat Al-Falaq</span>
+      </div>
+      <div data-key="68" class="key">
+        <kbd>D</kbd>
+        <span class="sound">Surat Al-Ikhlas</span>
+      </div>
+      <div data-key="70" class="key">
+        <kbd>F</kbd>
+        <span class="sound">Surat Al-Masad</span>
+      </div>
+      <div data-key="71" class="key">
+        <kbd>G</kbd>
+        <span class="sound">Surat An-Nasr</span>
+      </div>
+      <div data-key="72" class="key">
+        <kbd>H</kbd>
+        <span class="sound">Surat Al-Kafirun</span>
+      </div>
+      <div data-key="74" class="key">
+        <kbd>J</kbd>
+        <span class="sound">Surat Al-Kawthar</span>
+      </div>
+      <div data-key="75" class="key">
+        <kbd>K</kbd>
+        <span class="sound">Surat Al-Ma'un</span>
+      </div>
+      <div data-key="76" class="key">
+        <kbd>L</kbd>
+        <span class="sound">Surat Quraysh</span>
+      </div>
+    </div>
+
+    <audio data-key="65" src="sounds/114.mp3"></audio>
+    <audio data-key="83" src="sounds/113.mp3"></audio>
+    <audio data-key="68" src="sounds/112.mp3"></audio>
+    <audio data-key="70" src="sounds/111.mp3"></audio>
+    <audio data-key="71" src="sounds/110.mp3"></audio>
+    <audio data-key="72" src="sounds/109.mp3"></audio>
+    <audio data-key="74" src="sounds/108.mp3"></audio>
+    <audio data-key="75" src="sounds/107.mp3"></audio>
+    <audio data-key="76" src="sounds/106.mp3"></audio>
+
+    <script>
+      function playSound(e) {
+        const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`);
+        const key = document.querySelector(`.key[data-key="${e.keyCode}"]`);
+        // console.log(key);
+        if (!audio) return; //stop the function from doing anything else
+        audio.currentTime = 0;
+        audio.play();
+        key.classList.add("playing");
+      }
+      function removeTransition(e) {
+        // console.log(e);
+        if (e.propertyName !== "transform") return; //skip other transformations
+
+        e.target.classList.remove("playing");
+      }
+
+      const keys = document.querySelectorAll(".key");
+      keys.forEach((key) => key, addEventListener("transitionend", removeTransition));
+
+      window.addEventListener("keydown", playSound);
+
+      window.addEventListener("load", (event) => {
+        const getBackgound = parseInt(Math.random() * 6);
+        let backgroundImages = ['backgound.jpg','background2.jpg','background23.jpg', 'background3.jpg', 'background4.jpg', 'background.png']
+        console.log(getBackgound);
+        document.body.style.backgroundImage = `url('images/${backgroundImages[getBackgound]}')`; // "url('img_tree.png')";
+      });
+    </script>
+  </body>
+</html>
