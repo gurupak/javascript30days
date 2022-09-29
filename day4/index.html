@@ -1,0 +1,158 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Array Cardio 💪</title>
+  </head>
+  <body>
+    <p><em>Psst: have a look at th JavaScript Console</em></p>
+
+    <script>
+      //Array Cardio Day 1
+
+      //Data we will work on
+
+      const inventors = [
+        { first: "Ibrahim", last: "Habib al-Fazari", year: 720, passed: 777 },
+        { first: "Muhammad", last: "ibn Musa al-Khwarizmi", year: 780, passed: 847 },
+        { first: "Ibn ", last: "Yunus", year: 950, passed: 1009 },
+        { first: "Ibn", last: "Sirin", year: 653, passed: 726 },
+        { first: "Jabir", last: "ibn Hayyan", year: 750, passed: 816 },
+        { first: "Abu", last: "Hanifa", year: 699, passed: 767 },
+        { first: "Ibn", last: "Sina", year: 980, passed: 1037 },
+        { first: "Al-Masudi", last: "al-Ḥasan", year: 896, passed: 956 },
+        { first: "Ala al-Dīn", last: "ibn Muhammed", year: 1403, passed: 1474 },
+        { first: "Abu Nasr", last: "Al-Farabi", year: 870, passed: 950 },
+        { first: "Al-Saghani", last: "al-Asturlabi", year: 910, passed: 990 },
+      ];
+
+      const people = [
+        "Bakar, Abu",
+        "Farooq, Umer",
+        "Afan, Usman",
+        "bin Khitab, Ali",
+        "Arqam",
+        "bin Malik, Baraa",
+        "bin Ali, Hussain",
+        "Bin Awam, Zubain",
+        "Amr ad-Doose, Tufail",
+        "Adbul-Mutalib, Abbas",
+        "Al-Aswas, Al Miqdad",
+        "Ansari, Abu Ayyub",
+        "As-saddiq, Abu Bakar",
+        "Al Ghaffari, Abu Dharr",
+        "Al Khudri, Abu Saeed",
+        "Al Jarrahm, Abu Ubaida",
+        "Al Asharim, Abu Moosa",
+        "Hurarira, Abu",
+        "Zayed, Usama",
+        "Maalik, Anas",
+        "Rabah, Bilal",
+        "Abi Talib, Jafaar",
+        "al-Yamaan, Huzaifa",
+        "Ibn-e-Waleed, Khalid",
+        "Thabit, Zayd",
+        "Haritha, Zayd",
+        "Abi Waqaas, Saad",
+        "Ubadah, Saad",
+        "Muaaz, Saad",
+        "Zayd, Saeed",
+        "Al Farsih, Sulemaan",
+        "Amr, Sohail",
+        "Al Roomim, Shoeb",
+        "Ubaidullah, Talha",
+        "Bashr, Ubaad",
+        "as-Saait, Ubadah",
+        " Zubayr, Adbullah",
+        "Rawaaha, Adbullah",
+        "Abbas, Abdulllah",
+        "Masud, Abdullah",
+        "Maddon, Usman",
+        "Yaasir, Ammaar",
+        "Al Jamooh, Amr",
+        "Muslin, Muhammad",
+        "Jabal, Muaaz",
+        "Sohail, Abdullah",
+        "Khuwailid, Asad",
+      ];
+      // Array.prototype.filter()
+      // 1. Filter the list of inventors for those who were born in the 1500's
+      const thousand = inventors.filter(
+        (inventor) => inventor.year >= 700 && inventor.year < 800
+      );
+      console.table(thousand);
+
+      // Array.prototype.map()
+      // 2. Give us an array of the inventors first and last names
+      const fullNames = inventors.map((inventor) => `${inventor.first} ${inventor.last}`);
+      console.table(fullNames);
+      // Array.prototype.sort()
+      // 3. Sort the inventors by birthdate, oldest to youngest
+      const ordered = inventors.sort((a, b) => (a.year > b.year ? 1 : -1));
+      console.table(ordered);
+
+      // Array.prototype.reduce()
+      // 4. How many years did all the inventors live all together?
+      const totalYears = inventors.reduce((total, inventor) => {
+        return total + (inventor.passed - inventor.year);
+      }, 0);
+      console.table(totalYears);
+
+      // 5. Sort the inventors by years lived
+      const oldest = inventors.sort(function (a, b) {
+        const lastGuy = a.passed - a.year;
+        const nextGuy = b.passed - b.year;
+        return lastGuy > nextGuy ? -1 : 1;
+      });
+      console.table(oldest);
+
+      // 6. create a list of Boulevards in Paris that contain 'de' anywhere in the name
+      // https://en.wikipedia.org/wiki/Category:Boulevards_in_Paris
+      const streets = document.querySelector(".mw-category");
+      console.log(streets)
+      if (streets !== null) {
+        const links = Array.from(streets.querySelectorAll("a"));
+
+        const de = links
+          .map((link) => link.textContent)
+          .filter((streetName) => streetName.includes("de"));
+      }
+      // 7. sort Exercise
+      // Sort the people alphabetically by last name
+      const alpha = people.sort(function (lastOne, nextOne) {
+        const [aLast, aFirst] = lastOne.split(", ");
+        const [bLast, bFirst] = nextOne.split(", ");
+        return aLast;
+      });
+
+      // 8. Reduce Exercise
+      // Sum up the instances of each of these
+      const data = [
+        "car",
+        "car",
+        "truck",
+        "truck",
+        "bike",
+        "walk",
+        "car",
+        "van",
+        "bike",
+        "walk",
+        "car",
+        "van",
+        "car",
+        "truck",
+      ];
+
+      const transpose = data.reduce((obj, item) => {
+        if (!obj[item]) {
+          obj[item] = 0;
+        }
+        obj[item]++;
+        return obj;
+      }, {});
+      console.table(transpose);
+    </script>
+  </body>
+</html>
