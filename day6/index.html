@@ -1,0 +1,78 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Type Ahead</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <form class="search-form">
+      <input type="text" class="search" placeholder="Country or Province" />
+      <ul class="suggestions">
+        <li>Filter for a Country</li>
+        <li>or a Province</li>
+      </ul>
+    </form>
+    
+    <script>
+      const endpoint = 'https://mypcp.us/export/data.json';
+      //const endpoint =
+      //  "https://gist.githubusercontent.com/Miserlou/c5cd8364bf9b2420bb29/raw/2bf258763cdddd704f8ffd3ea9a3e81d25e2c6f6/cities.json";
+
+      const cities = [];
+
+      
+      fetch(endpoint )
+        .then((blob) => blob.json())
+        .then((data) => cities.push(...data));
+
+        console.log(cities);
+      function findMatches(word, cities) {
+        return cities.filter((place) => {
+          const regex = new RegExp(word, "gi");    
+          const stat = place.states.filter(state => state.name.match(regex));   
+          console.log(stat);   
+          const stateFound = [];
+          if (stat.length !== 0) {
+            stateFound.push(...stat);
+          }
+          return place.name.match(regex) || place.capital.match(regex) || stateFound.join("");
+        });
+      }
+
+      function numberWithCommas(x) {
+        return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+      }
+      function displayMatches() {
+        const matchArray = findMatches(this.value, cities);
+        const html = matchArray
+          .map((place) => {
+            const regex = new RegExp(this.value, "gi");
+            const cityName = place.name.replace(
+              regex,
+              `<span class="h1">${this.value}</span>`
+            );
+            const stateName = place.capital.replace(
+              regex,
+              `<span class="h1">${this.value}</span>`
+            );
+            return `
+                    <li>
+                        <span class="name"><span style="font-family: NotoColorEmojiLimited;">${place.emoji}</span> ${cityName}, ${stateName}</span>
+                        <span class="population">${place.currency_name}, ${place.currency_symbol}</span>
+                    </li>
+                `;
+          })
+          .join("");
+        suggestions.innerHTML = html;
+      }
+
+      const searchInput = document.querySelector(".search");
+      const suggestions = document.querySelector(".suggestions");
+
+      searchInput.addEventListener("change", displayMatches);
+      searchInput.addEventListener("keyup", displayMatches);
+    </script>
+  </body>
+</html>
