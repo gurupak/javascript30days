@@ -1,0 +1,83 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Array Cardio 2</title>
+  </head>
+  <body>
+    <style>
+      html {
+        margin: 0 auto;
+        font-size: 20px;
+        text-align: center;
+      }
+      body {
+        background: #799f0c; /* fallback for old browsers */
+        background: -webkit-linear-gradient(
+          to right,
+          #acbb78,
+          #799f0c
+        ); /* Chrome 10-25, Safari 5.1-6 */
+        background: linear-gradient(
+          to right,
+          #acbb78,
+          #799f0c
+        ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+      }
+      em {
+        width: 100%;
+        border-radius: 20px;
+        border: 1px solid yellow;
+        background-color: yellow;
+        padding: 5px;
+      }
+    </style>
+    <p><em>Psst: have a look at the JavaScript Console.</em></p>
+    <script>
+      const people = [
+        { name: "Wes", year: 1988 },
+        { name: "Kait", year: 1986 },
+        { name: "Irv", year: 1954 },
+        { name: "Lux", year: 2015 },
+      ];
+
+      const comments = [
+        { text: "Love this!", id: 523423 },
+        { text: "Super good", id: 823423 },
+        { text: "You are the best", id: 2039842 },
+        { text: "Ramen in my fav ever", id: 123523 },
+        { text: "Nice Nice Nice!", id: 542328 },
+      ];
+      // Some and Every Checks
+      // Array.prototype.some() // is at least one person 19 or older?
+      const isAdult = people.some(
+        (person) => new Date().getFullYear() - person.year >= 19
+      );
+      console.log(isAdult);
+      // Array.prototype.every() // is everyone 19 or older?
+      const allAdult = people.every(
+        (person) => new Date().getFullYear() - person.year >= 19
+      );
+      console.log(allAdult);
+
+      // Array.prototype.find()
+      // Find is like filter, but instead returns just the one you are looking for
+      // find the comment with the ID of 823423
+      const comment = comments.find((comment) => comment.id === 2039842);
+
+      console.log(comment);
+
+      // Array.prototype.findIndex()
+      // Find the comment with this ID
+      // delete the comment with the ID of 823423
+      const index = comments.findIndex((comment) => comment.id === 823423);
+      console.log(index);
+
+      //   comments.splice(index, 1);
+      const newComments = [...comments.slice(0, index), ...comments.slice(index + 1)];
+
+      console.table(newComments);
+    </script>
+  </body>
+</html>
