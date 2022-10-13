@@ -1,0 +1,74 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <style>
+      body {
+        margin: 0;
+        font-family: sans-serif;
+        background: url("https://source.unsplash.com/nDqA4d5NL0k/2000x2000");
+        background-size: cover;
+        display: flex;
+        align-items: center;
+        min-height: 100vh;
+      }
+      #bands {
+        list-style: inside square;
+        font-size: 20px;
+        background: white;
+        width: 500px;
+        margin: auto;
+        padding: 0;
+        box-shadow: 0 0 0 20px rgba(0, 0, 0, 0.05);
+      }
+
+      #bands li {
+        border-bottom: 1px solid #efefef;
+        padding: 20px;
+      }
+
+      #bands li:last-child {
+        border-bottom: 0;
+      }
+
+      a {
+        color: #ffc600;
+        text-decoration: none;
+      }
+    </style>
+
+    <ul id="bands"></ul>
+
+    <script>
+      const bands = [
+        "If you live your life according to Quran and hadith you will feel peace in your mind.",
+        "Born from different mothers skins of all colors come together as brothers. that’s the beauty of Islam.",
+        "The world is green and beautiful, and God has appointed you his steward over it. – Prophet Muhammad (PBUH)",
+        "You feel empty? Pray and cry to ALLAH. Tell him all the problems you have. You will have more than you imagine.",
+        "Faith is trusting God even when you don’t understand his plan.",
+        "No one is allowed to take from another what he does not allow him of his own free will. – Prophet Muhammad (PBUH)",
+        "If you have a friend who fears Allah, you can trust him. He will never leave you in your hardship.",
+        "Life is journey from ALLAH to ALLAH.",
+        "None is higher than the other unless he is higher in virtue. – Prophet Muhammad (BPUH)",
+        "Men and women have equal rewards for their deeds. – Quran 3:195",
+        "O ye who believe! Avoid suspicion as much (as possible): for suspicion in some cases is a sin: And spy not on each other behind their backs. – Quran 49:12",
+        "If you do something only to please Allah, you will surely get the good reward. None of any good work is worthless.",
+        "Beware of envy for envy devours good works like the fire devours fuel. – Prophet Muhammad (PBUH)",
+      ];
+
+      function strip(bandName) {
+        return bandName.replace(/^(a |the |an |o |no |if)/ig, '').trim();
+      }
+      const sortedBands = bands.sort((a, b) => {
+        return strip(a) > strip(b) ? 1 : -1;
+      });
+      document.querySelector("#bands").innerHTML = sortedBands.map(
+        (band) => `<li>${band}</li>`
+      ).join('');
+    </script>
+  </body>
+</html>
