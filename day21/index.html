@@ -47,7 +47,9 @@
       </g>
     </svg>
 
-    <h1 class="speed"><span class="speed-value"></span><span class="units">KM/H</span></h1>
+    <h1 class="speed">
+      <span class="speed-value"></span><span class="units">KM/H</span>
+    </h1>
 
     <style>
       html {
@@ -95,15 +97,20 @@
       const arrow = document.querySelector(".arrow");
       const speed = document.querySelector(".speed-value");
 
-      navigator.geolocation.watchPosition((data) => {
-        console.log(data);
-        speed.textContent = Math.round(data.coords.speed)
+      navigator.geolocation.watchPosition(
+        (data) => {
+          console.log(data);
+          speed.textContent = data.coords.speed;
 
-        arrow.style.trasform = `rotate(${data.coords.heading}deg)`
-      }, (err) => {
-        console.error(err);
-        alert('Hey! YOU BLOCKED THE LOCATION PERMISSION. ENABLE IT TO GET SPEED AND NORTH POSITION')
-      });
+          arrow.style.trasform = `rotate(${data.coords.heading}deg)`;
+        },
+        (err) => {
+          console.error(err);
+          alert(
+            "Hey! YOU BLOCKED THE LOCATION PERMISSION. ENABLE IT TO GET SPEED AND NORTH POSITION"
+          );
+        }
+      );
     </script>
   </body>
 </html>
