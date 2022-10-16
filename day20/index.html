@@ -49,12 +49,12 @@
           .then((data) => data.json())
           .then((result) => {
             // const data = JSON.stringify(result);
-            console.log(result);
-            console.log(result["main"]["temp"]);
+            // console.log(result);
+            // console.log(result["main"]["temp"]);
             returnData = `<span class="weather">${result["name"]} has temperature ${result["main"]["temp"]}C</span>`;
 
             paraTag.innerHTML = `${returnData}`;
-            wordsTag.appendChild(p);
+            paraTag.appendChild(p);
           })
           .catch((err) => console.error("OH Noo!.", err));
       }
