@@ -51,7 +51,7 @@
             // const data = JSON.stringify(result);
             // console.log(result);
             // console.log(result["main"]["temp"]);
-            returnData = `<span class="weather">${result["name"]} has temperature ${result["main"]["temp"]}&deg;</span>`;
+            returnData = `<span class="weather">${result["name"]} has temperature ${result["main"]["temp"]}&deg;C</span>`;
 
             paraTag.innerHTML = `${returnData}`;
             paraTag.appendChild(p);
