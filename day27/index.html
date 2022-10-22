@@ -1,0 +1,67 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Click and Drag</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="items">
+      <div class="item item1"><img src="./images/al-baraqa.jpg" alt=""></div>
+      <div class="item item2"><img src="./images/al-falqa.jpg" alt=""></div>
+      <div class="item item3"><img src="./images/al-hajj.jpg" alt=""></div>
+      <div class="item item4"><img src="./images/al-hud.jpg" alt=""></div>
+      <div class="item item5"><img src="./images/al-Ikhlas.jpg" alt=""></div>
+      <div class="item item6"><img src="./images/al-maida.jpg" alt=""></div>
+      <div class="item item7"><img src="./images/al-muzzammil.jpg" alt=""></div>
+      <div class="item item8"><img src="./images/al-naas.jpg" alt=""></div>
+      <div class="item item9"><img src="./images/al-nahal.jpg" alt=""></div>
+      <div class="item item10"><img src="./images/al-nisa.jpg" alt=""></div>
+      <div class="item item11"><img src="./images/al-quran.jpg" alt=""></div>
+      <div class="item item12"><img src="./images/al-quran2.jpg" alt=""></div>
+      <div class="item item13"><img src="./images/al-sharh.jpg" alt=""></div>
+      <div class="item item14"><img src="./images/al-taghabum.jpg" alt=""></div>
+      <div class="item item15"><img src="./images/al-talaq.jpg" alt=""></div>
+      <div class="item item16"><img src="./images/Alhumd.jpg" alt=""></div>
+      <div class="item item17"><img src="./images/kursi.jpg" alt=""></div>
+      <div class="item item18"><img src="./images/al-anbiya.jpg" alt=""></div>
+      <div class="item item19"><img src="./images/Laila.jpg" alt=""></div>
+      <div class="item item20"><img src="./images/al-maryam.jpg" alt=""></div>
+      <div class="item item21"><img src="./images/noor.jpg" alt=""></div>
+      <div class="item item22"><img src="./images/zaid.jpg" alt=""></div>
+      <div class="item item23"><img src="./images/aabana.jpg" alt=""></div>
+      <div class="item item24"><img src="./images/al-quran3.jpg" alt=""></div>
+      <div class="item item25"><img src="./images/al-quran4.jpg" alt=""></div>
+    </div>
+
+    <script>
+      const slider = document.querySelector(".items");
+      let isDown = false;
+      let startX;
+      let scrollLeft;
+      slider.addEventListener("mousedown", (e) => {
+        isDown = true;
+        slider.classList.add("active");
+        startX = e.pageX - slider.offsetLeft;
+        scrollLeft = slider.scrollLeft;
+      });
+      slider.addEventListener("mouseleave", () => {
+        isDown = false;
+        slider.classList.remove("active");
+      });
+      slider.addEventListener("mouseup", () => {
+        isDown = false;
+        slider.classList.remove("active");
+      });
+      slider.addEventListener("mousemove", (e) => {
+        if (!isDown) return;
+        e.preventDefault();
+        const x = e.pageX - slider.offsetLeft;
+        const walk =( x - startX ) * 3;
+        slider.scrollLeft = scrollLeft - walk;
+
+      });
+    </script>
+  </body>
+</html>
